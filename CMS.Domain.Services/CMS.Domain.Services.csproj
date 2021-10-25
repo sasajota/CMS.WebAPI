@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CMS.Data.Interfaces\CMS.Data.Interfaces.csproj" />
+    <ProjectReference Include="..\CMS.Domain\CMS.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
