@@ -18,14 +18,14 @@ namespace CMS.Data.Repositories
             _cmsContext.SaveChanges();
             return user;
         }
-
-        public User Delete(int userId)
+        //DELETE NOTE:
+        //This is not a mistake, delete should not actually delete objects, rather it should update it's status
+        public User Delete(User user)
         {
-            _cmsContext.Users.Update(userId);
+            _cmsContext.Users.Update(user);
             _cmsContext.SaveChanges();
             return null;
         }
-
         public User Edit(User user)
         {
             _cmsContext.Users.Update(user);

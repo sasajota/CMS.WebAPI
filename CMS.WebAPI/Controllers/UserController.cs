@@ -27,9 +27,9 @@ namespace CMS.WebAPI.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(User user)
         {
-            return Ok(_userService.Delete(id));
+            return Ok(_userService.Delete(user));
         }
 
         [HttpPatch]

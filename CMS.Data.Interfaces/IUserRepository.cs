@@ -6,7 +6,7 @@ namespace CMS.Data.Interfaces
     {
         User Create(User user);
 
-        User Delete(int userid);
+        User Delete(User user);
 
         User Edit(User user);
 

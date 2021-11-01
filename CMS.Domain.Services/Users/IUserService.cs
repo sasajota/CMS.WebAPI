@@ -4,7 +4,7 @@
     {
         User Create(User user);
 
-        User Delete(int id);
+        User Delete(User user);
 
         User Edit(User user);
 
