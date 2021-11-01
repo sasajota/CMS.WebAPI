@@ -18,5 +18,29 @@ namespace CMS.Data.Repositories
             _cmsContext.SaveChanges();
             return user;
         }
+
+        public User Delete(User user)
+        {
+            _cmsContext.Users.Remove(user);
+            _cmsContext.SaveChanges();
+            return user;
+        }
+
+        public User Edit(User user)
+        {
+            _cmsContext.Users.Update(user);
+            _cmsContext.SaveChanges();
+            return user;
+        }
+
+        public User List(User user)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public User Read(int userId)
+        {
+            return _cmsContext.Users.Find(userId);
+        }
     }
 }

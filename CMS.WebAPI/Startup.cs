@@ -4,6 +4,7 @@ using CMS.Data.Repositories;
 using CMS.Domain.Services.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,7 @@ namespace CMS.WebAPI
 {
     public class Startup
     {
+        private const string DatabaseName = "CMS";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,7 +25,7 @@ namespace CMS.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CMSContext>();
+            services.AddDbContext<CMSContext>(options => options.UseSqlite($"Data Source={DatabaseName}"));
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<IUserService, UserService>();
@@ -44,6 +46,7 @@ namespace CMS.WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CMS.WebAPI v1"));
             }
+            UpdateDatabase(app);
 
             app.UseHttpsRedirection();
 
@@ -55,6 +58,19 @@ namespace CMS.WebAPI
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder appBuilder)
+        {
+            using (var serviceScope = appBuilder.ApplicationServices
+                                                .GetRequiredService<IServiceScopeFactory>()
+                                                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<CMSContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }

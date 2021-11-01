@@ -5,7 +5,7 @@ namespace CMS.Data
 {
     public class CMSContext : DbContext
     {
-        public CMSContext()
+        public CMSContext(DbContextOptions<CMSContext> options) : base(options)
         {
 
         }
@@ -19,5 +19,15 @@ namespace CMS.Data
         }
         //entities
         public DbSet<User> Users { get; set; }
+
+        public DbSet<ArticleCategory> ArticleCategories { get; set; }
+
+        public DbSet<Article> Articles { get; set; }
+
+        public DbSet<Menu> Menus { get; set; }
+
+        public DbSet<MenuItem> MenuItems { get; set; }
+
+        public DbSet<File> Files { get; set; }
     }
 }

@@ -20,24 +20,35 @@ namespace CMS.WebAPI.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        public IActionResult Get(int id)
-        {
-            return _userService.Get(id);
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return _userService.Get();
-        }
-
-
         [HttpPut]
         public IActionResult Create([FromBody] User user)
         {
             return Ok(_userService.Create(user));
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            return Ok(_userService.Delete(id));
+        }
+
+        [HttpPatch]
+        public IActionResult Edit([FromBody] User user)
+        {
+            return Ok(_userService.Edit(user));
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult Read(int id)
+        {
+            return Ok(_userService.Read(id));
+        }
+
+        [HttpGet]
+        public IActionResult List([FromBody] User user)
+        {
+            return Ok(_userService.List(user));
         }
     }
 }
