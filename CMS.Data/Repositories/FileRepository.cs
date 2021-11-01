@@ -38,9 +38,9 @@ namespace CMS.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public File Read(File file)
+        public File Read(int fileId)
         {
-            throw new System.NotImplementedException();
+            return _cmsContext.Files.Find(fileId);
         }
     }
 }

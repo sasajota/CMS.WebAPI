@@ -41,9 +41,9 @@ namespace CMS.WebAPI.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Read([FromBody] MenuItem menuItem)
+        public IActionResult Read(int id)
         {
-            return Ok(_menuItemService.Read(menuItem));
+            return Ok(_menuItemService.Read(id));
         }
 
         [HttpGet]

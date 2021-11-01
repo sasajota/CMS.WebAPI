@@ -12,35 +12,35 @@ namespace CMS.Data.Repositories
             _cmsContext = cmsContext;
         }
 
-        public MenuItem Create(MenuItem menuItems)
+        public MenuItem Create(MenuItem menuItem)
         {
-            _cmsContext.MenuItems.Add(menuItems);
+            _cmsContext.MenuItems.Add(menuItem);
             _cmsContext.SaveChanges();
-            return menuItems;
+            return menuItem;
         }
 
-        public MenuItem Delete(MenuItem menuItems)
+        public MenuItem Delete(MenuItem menuItem)
         {
-            _cmsContext.MenuItems.Remove(menuItems);
+            _cmsContext.MenuItems.Remove(menuItem);
             _cmsContext.SaveChanges();
-            return menuItems;
+            return menuItem;
         }
 
-        public MenuItem Edit(MenuItem menuItems)
+        public MenuItem Edit(MenuItem menuItem)
         {
-            _cmsContext.MenuItems.Update(menuItems);
+            _cmsContext.MenuItems.Update(menuItem);
             _cmsContext.SaveChanges();
-            return menuItems;
+            return menuItem;
         }
 
-        public MenuItem List(MenuItem menuItems)
+        public MenuItem List(MenuItem menuItem)
         {
             throw new System.NotImplementedException();
         }
 
-        public MenuItem Read(MenuItem menuItems)
+        public MenuItem Read(int menuItemId)
         {
-            throw new System.NotImplementedException();
+            return _cmsContext.MenuItems.Find(menuItemId);
         }
     }
 }

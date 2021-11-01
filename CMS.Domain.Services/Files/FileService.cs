@@ -13,9 +13,6 @@ namespace CMS.Domain.Services.Files
 
         public File Create(File file)
         {
-            // TODO: Validacija kompleksnosti passworda
-            // TODO: Validacija da je username unique
-            // Ako je sve ok, kreiraj korisnika
             return _fileRepository.Create(file);
         }
 
@@ -34,9 +31,9 @@ namespace CMS.Domain.Services.Files
             throw new System.NotImplementedException();
         }
 
-        public File Read(File file)
+        public File Read(int id)
         {
-            throw new System.NotImplementedException();
+            return _fileRepository.Read(id);
         }
     }
 }

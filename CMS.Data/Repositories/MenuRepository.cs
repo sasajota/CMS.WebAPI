@@ -38,9 +38,9 @@ namespace CMS.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Menu Read(Menu menu)
+        public Menu Read(int menuId)
         {
-            throw new System.NotImplementedException();
+            return _cmsContext.Menus.Find(menuId);
         }
     }
 }

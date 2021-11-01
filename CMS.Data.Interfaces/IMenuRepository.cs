@@ -10,7 +10,7 @@ namespace CMS.Data.Interfaces
 
         Menu Edit(Menu menu);
 
-        Menu Read(Menu menu);
+        Menu Read(int menuId);
 
         Menu List(Menu menu);
     }

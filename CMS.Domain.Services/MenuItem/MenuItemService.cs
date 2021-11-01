@@ -13,9 +13,6 @@ namespace CMS.Domain.Services.MenuItems
 
         public MenuItem Create(MenuItem menuItem)
         {
-            // TODO: Validacija kompleksnosti passworda
-            // TODO: Validacija da je username unique
-            // Ako je sve ok, kreiraj korisnika
             return _menuItemRepository.Create(menuItem);
         }
 
@@ -34,9 +31,9 @@ namespace CMS.Domain.Services.MenuItems
             throw new System.NotImplementedException();
         }
 
-        public MenuItem Read(MenuItem menuItem)
+        public MenuItem Read(int id)
         {
-            throw new System.NotImplementedException();
+            return _menuItemRepository.Read(id);
         }
     }
 }

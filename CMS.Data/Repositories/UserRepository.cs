@@ -19,11 +19,11 @@ namespace CMS.Data.Repositories
             return user;
         }
 
-        public User Delete(User user)
+        public User Delete(int userId)
         {
-            _cmsContext.Users.Remove(user);
+            _cmsContext.Users.Update(userId);
             _cmsContext.SaveChanges();
-            return user;
+            return null;
         }
 
         public User Edit(User user)

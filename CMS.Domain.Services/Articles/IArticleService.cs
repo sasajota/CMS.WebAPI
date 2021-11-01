@@ -8,7 +8,7 @@
 
         Article Edit(Article article);
 
-        Article Read(Article article);
+        Article Read(int id);
 
         Article List(Article article);
 

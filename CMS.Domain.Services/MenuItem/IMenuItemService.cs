@@ -8,7 +8,7 @@
 
         MenuItem Edit(MenuItem menuItem);
 
-        MenuItem Read(MenuItem menuItem);
+        MenuItem Read(int id);
 
         MenuItem List(MenuItem menuItem);
 

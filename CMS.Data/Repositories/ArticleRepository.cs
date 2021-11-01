@@ -38,9 +38,9 @@ namespace CMS.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Article Read(Article article)
+        public Article Read(int articleId)
         {
-            throw new System.NotImplementedException();
+            return _cmsContext.Articles.Find(articleId);
         }
     }
 }

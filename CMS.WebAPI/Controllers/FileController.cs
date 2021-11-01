@@ -40,9 +40,9 @@ namespace CMS.WebAPI.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Read([FromBody] File file)
+        public IActionResult Read(int id)
         {
-            return Ok(_fileService.Read(file));
+            return Ok(_fileService.Read(id));
         }        
         
         [HttpGet]

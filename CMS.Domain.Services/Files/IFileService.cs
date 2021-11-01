@@ -8,7 +8,7 @@
 
         File Edit(File file);
 
-        File Read(File file);
+        File Read(int id);
 
         File List(File file);
 

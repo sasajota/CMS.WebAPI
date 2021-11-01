@@ -34,9 +34,9 @@ namespace CMS.Domain.Services.Articles
             throw new System.NotImplementedException();
         }
 
-        public Article Read(Article article)
+        public Article Read(int id)
         {
-            throw new System.NotImplementedException();
+            return _articleRepository.Read(id);
         }
     }
 }

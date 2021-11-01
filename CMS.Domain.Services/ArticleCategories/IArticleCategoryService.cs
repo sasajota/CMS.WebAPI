@@ -8,7 +8,7 @@
 
         ArticleCategory Edit(ArticleCategory articleCategory);
 
-        ArticleCategory Read(int articleCategoryId);
+        ArticleCategory Read(int id);
 
         ArticleCategory List(ArticleCategory articleCategory);
     }

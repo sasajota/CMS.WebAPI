@@ -38,9 +38,9 @@ namespace CMS.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public ArticleCategory Read(ArticleCategory articleCategory)
+        public ArticleCategory Read(int articleCategoryId)
         {
-            throw new System.NotImplementedException();
+            return _cmsContext.ArticleCategories.Find(articleCategoryId);
         }
     }
 }

@@ -40,9 +40,9 @@ namespace CMS.WebAPI.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Read([FromBody] Article article)
+        public IActionResult Read(int id)
         {
-            return Ok(_articleService.Read(article));
+            return Ok(_articleService.Read(id));
         }
 
         [HttpGet]

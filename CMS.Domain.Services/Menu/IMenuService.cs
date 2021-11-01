@@ -8,7 +8,7 @@
 
         Menu Edit(Menu menu);
 
-        Menu Read(Menu menu);
+        Menu Read(int id);
 
         Menu List(Menu menu);
 

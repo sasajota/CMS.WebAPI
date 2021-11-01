@@ -10,7 +10,7 @@ namespace CMS.Data.Interfaces
 
         File Edit(File file);
 
-        File Read(File file);
+        File Read(int fileId);
 
         File List(File file);
     }

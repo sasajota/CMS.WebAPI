@@ -31,9 +31,9 @@ namespace CMS.Domain.Services.ArticleCategories
             throw new System.NotImplementedException();
         }
 
-        public ArticleCategory Read(int articleCategoryId)
+        public ArticleCategory Read(int id)
         {
-            throw new System.NotImplementedException();
+            return _articleCategoryRepository.Read(id);
         }
     }
 }

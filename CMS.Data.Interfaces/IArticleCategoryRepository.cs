@@ -10,7 +10,7 @@ namespace CMS.Data.Interfaces
 
         ArticleCategory Edit(ArticleCategory articleCategories);
 
-        ArticleCategory Read(ArticleCategory articleCategories);
+        ArticleCategory Read(int articleCategoriesId);
 
         ArticleCategory List(ArticleCategory articleCategories);
     }

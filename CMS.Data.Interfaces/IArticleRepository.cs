@@ -10,7 +10,7 @@ namespace CMS.Data.Interfaces
 
         Article Edit(Article article);
 
-        Article Read(Article article);
+        Article Read(int articleId);
 
         Article List(Article article);
     }

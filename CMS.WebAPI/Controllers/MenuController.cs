@@ -40,9 +40,9 @@ namespace CMS.WebAPI.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Read([FromBody] Menu menu)
+        public IActionResult Read(int id)
         {
-            return Ok(_menuService.Read(menu));
+            return Ok(_menuService.Read(id));
         }
 
         [HttpGet]
