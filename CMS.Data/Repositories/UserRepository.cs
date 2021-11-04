@@ -1,12 +1,14 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CMS.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
         private readonly CMSContext _cmsContext;
-
+        
         public UserRepository(CMSContext cmsContext)
         {
             _cmsContext = cmsContext;
@@ -22,7 +24,8 @@ namespace CMS.Data.Repositories
         //This is not a mistake, delete should not actually delete objects, rather it should update it's status
         public User Delete(User user)
         {
-            _cmsContext.Users.Update(user);
+            _cmsContext.Users.Find(user);
+            user.Status = Status.INACTIVE;
             _cmsContext.SaveChanges();
             return null;
         }
@@ -35,12 +38,13 @@ namespace CMS.Data.Repositories
 
         public User List(User user)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public User Read(int userId)
         {
-            return _cmsContext.Users.Find(userId);
+            User user = _cmsContext.Users.Find(userId);
+            return user;
         }
     }
 }

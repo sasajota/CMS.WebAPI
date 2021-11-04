@@ -16,6 +16,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Data", "CMS.Data\CMS.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS.Data.Interfaces", "CMS.Data.Interfaces\CMS.Data.Interfaces.csproj", "{F329CE26-EC96-4C40-811B-F045B37F5118}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{22BB7163-B5BC-4D02-BBB7-CABA76820423}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Domain.Services.Tests", "CMS.Domain.Services.Tests\CMS.Domain.Services.Tests.csproj", "{9A9A6868-2691-410D-B094-C2688C959E94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,9 +46,16 @@ Global
 		{F329CE26-EC96-4C40-811B-F045B37F5118}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F329CE26-EC96-4C40-811B-F045B37F5118}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F329CE26-EC96-4C40-811B-F045B37F5118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A9A6868-2691-410D-B094-C2688C959E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A9A6868-2691-410D-B094-C2688C959E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A9A6868-2691-410D-B094-C2688C959E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A9A6868-2691-410D-B094-C2688C959E94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9A9A6868-2691-410D-B094-C2688C959E94} = {22BB7163-B5BC-4D02-BBB7-CABA76820423}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D10F7FD-D896-455B-9B8B-127714082879}

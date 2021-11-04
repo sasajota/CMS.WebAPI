@@ -3,7 +3,8 @@ using System.Text.RegularExpressions;
 
 namespace CMS.Domain.Services.Validations
 {
-    public class PasswordValidation
+    // TODO: Add interface
+    public class UsernameAndPasswordValidation : IUsernameAndPasswordValidation
     {
         public bool ValidatePassword(string password)
         {
@@ -44,6 +45,28 @@ namespace CMS.Domain.Services.Validations
             {
                 return true;
             }
+        }
+        public bool ValidateUsername(string username)
+        {
+            var input = username;
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                throw new Exception("Username can not be empty");
+            }
+
+            var isValid = new Regex(@"^[A-z][A-z|\.|\s]+$");
+
+            if (!isValid.IsMatch(input))
+            {
+                throw new Exception("Username is not valid");
+            }
+
+            else
+            {
+                return true;
+            }
+
         }
     }
 }

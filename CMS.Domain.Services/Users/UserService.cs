@@ -1,25 +1,28 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain.Services.Validations;
+using System;
 
 namespace CMS.Domain.Services.Users
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUsernameAndPasswordValidation _passwordValidation, _usernameValidation;
 
-        PasswordValidation passwordValidation = new PasswordValidation();
-        UsernameValidation usernameValidation = new UsernameValidation();
-
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository,
+            IUsernameAndPasswordValidation passwordValidation,
+            IUsernameAndPasswordValidation usernameValidation)
         {
             _userRepository = userRepository;
+            _passwordValidation = passwordValidation;
+            _usernameValidation = usernameValidation;
         }
 
         public User Create(User user)
         {
 
-            bool isPasswordValid = passwordValidation.ValidatePassword(user.Password);
-            bool isUsernameValid = usernameValidation.ValidateUsername(user.Username);
+            bool isPasswordValid = _passwordValidation.ValidatePassword(user.Password);
+            bool isUsernameValid = _usernameValidation.ValidateUsername(user.Username);
 
             if(isPasswordValid == true && isUsernameValid == true)
             {
@@ -31,12 +34,21 @@ namespace CMS.Domain.Services.Users
 
         public User Delete(User user)
         {
-            return _userRepository.Edit(user);
+            if (user.Status == Status.ACTIVE)
+            {
+                return _userRepository.Delete(user);
+                user.Status = Status.INACTIVE;
+            }
+            throw new Exception("User does not exist.");
         }
 
         public User Edit(User user)
         {
-            throw new System.NotImplementedException();
+            if (user.Status == Status.ACTIVE)
+            {
+                return _userRepository.Edit(user);
+            }
+            throw new Exception("User does not exist.");
         }
 
         public User List(User user)
