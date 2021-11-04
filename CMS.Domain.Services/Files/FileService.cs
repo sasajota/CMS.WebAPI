@@ -1,9 +1,11 @@
 ﻿using CMS.Data.Interfaces;
+using System;
 
 namespace CMS.Domain.Services.Files
 {
     public class FileService : IFileService
     {
+        private const string MissingEntityErrorMessage = "File does not exist.";
         private readonly IFileRepository _fileRepository;
 
         public FileService(IFileRepository fileRepository)
@@ -18,17 +20,25 @@ namespace CMS.Domain.Services.Files
 
         public File Delete(File file)
         {
-            throw new System.NotImplementedException();
+            if (file.Status == Status.ACTIVE)
+            {
+                return _fileRepository.Delete(file);
+            }
+            throw new Exception(MissingEntityErrorMessage);
         }
 
         public File Edit(File file)
         {
-            throw new System.NotImplementedException();
+            if (file.Status == Status.ACTIVE)
+            {
+                return _fileRepository.Edit(file);
+            }
+            throw new Exception(MissingEntityErrorMessage);
         }
 
         public File List(File file)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public File Read(int id)

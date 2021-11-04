@@ -21,7 +21,7 @@ namespace CMS.Data.Repositories
 
         public MenuItem Delete(MenuItem menuItem)
         {
-            _cmsContext.MenuItems.Remove(menuItem);
+            menuItem.Status = Status.INACTIVE;
             _cmsContext.SaveChanges();
             return menuItem;
         }

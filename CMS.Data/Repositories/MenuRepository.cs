@@ -1,5 +1,6 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain;
+using System;
 
 namespace CMS.Data.Repositories
 {
@@ -21,7 +22,7 @@ namespace CMS.Data.Repositories
 
         public Menu Delete(Menu menu)
         {
-            _cmsContext.Menus.Remove(menu);
+            menu.Status = Status.INACTIVE;
             _cmsContext.SaveChanges();
             return menu;
         }
@@ -35,7 +36,7 @@ namespace CMS.Data.Repositories
 
         public Menu List(Menu menu)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Menu Read(int menuId)

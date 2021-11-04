@@ -21,7 +21,8 @@ namespace CMS.Data.Repositories
 
         public Article Delete(Article article)
         {
-            _cmsContext.Articles.Remove(article);
+
+            article.Status = Status.INACTIVE;
             _cmsContext.SaveChanges();
             return article;
         }

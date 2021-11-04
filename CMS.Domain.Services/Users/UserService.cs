@@ -6,6 +6,7 @@ namespace CMS.Domain.Services.Users
 {
     public class UserService : IUserService
     {
+        private const string MissingEntityErrorMessage = "User does not exist.";
         private readonly IUserRepository _userRepository;
         private readonly IUsernameAndPasswordValidation _passwordValidation, _usernameValidation;
 
@@ -36,10 +37,9 @@ namespace CMS.Domain.Services.Users
         {
             if (user.Status == Status.ACTIVE)
             {
-                return _userRepository.Delete(user);
-                user.Status = Status.INACTIVE;
+                _userRepository.Delete(user);
             }
-            throw new Exception("User does not exist.");
+            throw new Exception(MissingEntityErrorMessage);
         }
 
         public User Edit(User user)
@@ -48,12 +48,12 @@ namespace CMS.Domain.Services.Users
             {
                 return _userRepository.Edit(user);
             }
-            throw new Exception("User does not exist.");
+            throw new Exception(MissingEntityErrorMessage);
         }
 
         public User List(User user)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public User Read(int id)

@@ -21,7 +21,7 @@ namespace CMS.Data.Repositories
 
         public File Delete(File file)
         {
-            _cmsContext.Files.Remove(file);
+            file.Status = Status.INACTIVE;
             _cmsContext.SaveChanges();
             return file;
         }

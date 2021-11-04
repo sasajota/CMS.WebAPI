@@ -21,7 +21,7 @@ namespace CMS.Data.Repositories
 
         public ArticleCategory Delete(ArticleCategory articleCategory)
         {
-            _cmsContext.ArticleCategories.Remove(articleCategory);
+            articleCategory.Status = Status.INACTIVE;
             _cmsContext.SaveChanges();
             return articleCategory;
         }

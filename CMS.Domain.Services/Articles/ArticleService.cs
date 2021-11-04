@@ -1,9 +1,11 @@
 ﻿using CMS.Data.Interfaces;
+using System;
 
 namespace CMS.Domain.Services.Articles
 {
     public class ArticleService : IArticleService
     {
+        private const string MissingEntityErrorMessage = "Article does not exist.";
         private readonly IArticleRepository _articleRepository;
 
         public ArticleService(IArticleRepository articleRepository)
@@ -13,25 +15,30 @@ namespace CMS.Domain.Services.Articles
 
         public Article Create(Article article)
         {
-            // TODO: Validacija kompleksnosti passworda
-            // TODO: Validacija da je username unique
-            // Ako je sve ok, kreiraj korisnika
             return _articleRepository.Create(article);
         }
 
         public Article Delete(Article article)
         {
-            throw new System.NotImplementedException();
+            if (article.Status == Status.ACTIVE)
+            {
+                return _articleRepository.Delete(article);
+            }
+            throw new Exception(MissingEntityErrorMessage);
         }
 
         public Article Edit(Article article)
         {
-            throw new System.NotImplementedException();
+            if (article.Status == Status.ACTIVE)
+            {
+                return _articleRepository.Edit(article);
+            }
+            throw new Exception(MissingEntityErrorMessage);
         }
 
         public Article List(Article article)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Article Read(int id)

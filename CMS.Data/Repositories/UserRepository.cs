@@ -24,7 +24,6 @@ namespace CMS.Data.Repositories
         //This is not a mistake, delete should not actually delete objects, rather it should update it's status
         public User Delete(User user)
         {
-            _cmsContext.Users.Find(user);
             user.Status = Status.INACTIVE;
             _cmsContext.SaveChanges();
             return null;

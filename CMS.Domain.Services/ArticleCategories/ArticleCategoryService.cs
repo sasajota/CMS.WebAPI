@@ -1,9 +1,11 @@
 ﻿using CMS.Data.Interfaces;
+using System;
 
 namespace CMS.Domain.Services.ArticleCategories
 {
     public class ArticleCategoryService : IArticleCategoryService
     {
+        private const string MissingEntityErrorMessage = "Article category does not exist.";
         private readonly IArticleCategoryRepository _articleCategoryRepository;
 
         public ArticleCategoryService(IArticleCategoryRepository articleCategoryRepository)
@@ -18,17 +20,25 @@ namespace CMS.Domain.Services.ArticleCategories
 
         public ArticleCategory Delete(ArticleCategory articleCategory)
         {
-            throw new System.NotImplementedException();
+            if (articleCategory.Status == Status.ACTIVE)
+            {
+                return _articleCategoryRepository.Delete(articleCategory);
+            }
+            throw new Exception(MissingEntityErrorMessage);
         }
 
         public ArticleCategory Edit(ArticleCategory articleCategory)
         {
-            throw new System.NotImplementedException();
+            if (articleCategory.Status == Status.ACTIVE)
+            {
+                return _articleCategoryRepository.Edit(articleCategory);
+            }
+            throw new Exception(MissingEntityErrorMessage);
         }
 
         public ArticleCategory List(ArticleCategory articleCategory)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public ArticleCategory Read(int id)
