@@ -1,6 +1,6 @@
 ﻿namespace CMS.Domain
 {
-    public class User : Auditable
+    public class User : Auditable 
     {
         public int Id { get; set; }
 
@@ -16,7 +16,7 @@
 
         public string Password { get; set; }
 
-        public Status Status { set => Status.ACTIVE; } 
+        public Status Status { get; set; } = Status.ACTIVE;
 
         public UserType Type { get; set; }
     }

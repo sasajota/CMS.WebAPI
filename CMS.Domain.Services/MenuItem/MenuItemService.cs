@@ -1,16 +1,19 @@
 ﻿using CMS.Data.Interfaces;
+using CMS.Domain.Services.Validations;
 using System;
 
 namespace CMS.Domain.Services.MenuItems
 {
     public class MenuItemService : IMenuItemService
     {
-        private const string MissingEntityErrorMessage = "Menu item does not exist.";
         private readonly IMenuItemRepository _menuItemRepository;
+        private readonly IEntityStatusValidator _entityStatusValidator;
 
-        public MenuItemService(IMenuItemRepository menuItemRepository)
+        public MenuItemService(IMenuItemRepository menuItemRepository,
+            IEntityStatusValidator entityStatusValidator)
         {
             _menuItemRepository = menuItemRepository;
+            _entityStatusValidator = entityStatusValidator;
         }
 
         public MenuItem Create(MenuItem menuItem)
@@ -20,20 +23,14 @@ namespace CMS.Domain.Services.MenuItems
 
         public MenuItem Delete(MenuItem menuItem)
         {
-            if (menuItem.Status == Status.ACTIVE)
-            {
-                return _menuItemRepository.Delete(menuItem);
-            }
-            throw new Exception(MissingEntityErrorMessage);
+            _entityStatusValidator.Validate(menuItem.Status);
+            return _menuItemRepository.Delete(menuItem);
         }
 
         public MenuItem Edit(MenuItem menuItem)
         {
-            if (menuItem.Status == Status.ACTIVE)
-            {
-                return _menuItemRepository.Edit(menuItem);
-            }
-            throw new Exception(MissingEntityErrorMessage);
+            _entityStatusValidator.Validate(menuItem.Status);
+            return _menuItemRepository.Edit(menuItem);
         }
 
         public MenuItem List(MenuItem menuItem)

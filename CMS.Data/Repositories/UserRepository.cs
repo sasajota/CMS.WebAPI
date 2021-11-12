@@ -1,6 +1,5 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain;
-using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace CMS.Data.Repositories
@@ -8,7 +7,7 @@ namespace CMS.Data.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly CMSContext _cmsContext;
-        
+            
         public UserRepository(CMSContext cmsContext)
         {
             _cmsContext = cmsContext;
@@ -20,11 +19,10 @@ namespace CMS.Data.Repositories
             _cmsContext.SaveChanges();
             return user;
         }
-        //DELETE NOTE:
-        //This is not a mistake, delete should not actually delete objects, rather it should update it's status
+
         public User Delete(User user)
         {
-            user.Status = Status.INACTIVE;
+            _cmsContext.Users.Update(user);
             _cmsContext.SaveChanges();
             return null;
         }

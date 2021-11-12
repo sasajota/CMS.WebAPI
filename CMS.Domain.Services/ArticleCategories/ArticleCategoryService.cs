@@ -1,16 +1,19 @@
 ﻿using CMS.Data.Interfaces;
+using CMS.Domain.Services.Validations;
 using System;
 
 namespace CMS.Domain.Services.ArticleCategories
 {
     public class ArticleCategoryService : IArticleCategoryService
     {
-        private const string MissingEntityErrorMessage = "Article category does not exist.";
         private readonly IArticleCategoryRepository _articleCategoryRepository;
+        private readonly IEntityStatusValidator _entityStatusValidator;
 
-        public ArticleCategoryService(IArticleCategoryRepository articleCategoryRepository)
+        public ArticleCategoryService(IArticleCategoryRepository articleCategoryRepository,
+            IEntityStatusValidator entityStatusValidator)
         {
             _articleCategoryRepository = articleCategoryRepository;
+            _entityStatusValidator = entityStatusValidator;
         }
 
         public ArticleCategory Create(ArticleCategory articleCategory)
@@ -20,20 +23,14 @@ namespace CMS.Domain.Services.ArticleCategories
 
         public ArticleCategory Delete(ArticleCategory articleCategory)
         {
-            if (articleCategory.Status == Status.ACTIVE)
-            {
-                return _articleCategoryRepository.Delete(articleCategory);
-            }
-            throw new Exception(MissingEntityErrorMessage);
+            _entityStatusValidator.Validate(articleCategory.Status);
+            return _articleCategoryRepository.Delete(articleCategory);
         }
 
         public ArticleCategory Edit(ArticleCategory articleCategory)
         {
-            if (articleCategory.Status == Status.ACTIVE)
-            {
-                return _articleCategoryRepository.Edit(articleCategory);
-            }
-            throw new Exception(MissingEntityErrorMessage);
+            _entityStatusValidator.Validate(articleCategory.Status);
+            return _articleCategoryRepository.Edit(articleCategory);
         }
 
         public ArticleCategory List(ArticleCategory articleCategory)

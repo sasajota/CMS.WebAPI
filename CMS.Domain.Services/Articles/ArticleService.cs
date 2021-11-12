@@ -1,16 +1,19 @@
 ﻿using CMS.Data.Interfaces;
+using CMS.Domain.Services.Validations;
 using System;
 
 namespace CMS.Domain.Services.Articles
 {
     public class ArticleService : IArticleService
     {
-        private const string MissingEntityErrorMessage = "Article does not exist.";
         private readonly IArticleRepository _articleRepository;
+        private readonly IEntityStatusValidator _entityStatusValidator;
 
-        public ArticleService(IArticleRepository articleRepository)
+        public ArticleService(IArticleRepository articleRepository, 
+            IEntityStatusValidator entityStatusValidator)
         {
             _articleRepository = articleRepository;
+            _entityStatusValidator = entityStatusValidator;
         }
 
         public Article Create(Article article)
@@ -20,20 +23,14 @@ namespace CMS.Domain.Services.Articles
 
         public Article Delete(Article article)
         {
-            if (article.Status == Status.ACTIVE)
-            {
-                return _articleRepository.Delete(article);
-            }
-            throw new Exception(MissingEntityErrorMessage);
+            _entityStatusValidator.Validate(article.Status);
+            return _articleRepository.Delete(article);
         }
 
         public Article Edit(Article article)
         {
-            if (article.Status == Status.ACTIVE)
-            {
-                return _articleRepository.Edit(article);
-            }
-            throw new Exception(MissingEntityErrorMessage);
+            _entityStatusValidator.Validate(article.Status);
+            return _articleRepository.Edit(article);
         }
 
         public Article List(Article article)

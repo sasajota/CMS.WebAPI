@@ -12,7 +12,6 @@ namespace CMS.WebAPI.Controllers
 
         private readonly ILogger<MenuItemController> _logger;
         private readonly IMenuItemService _menuItemService;
-
         public MenuItemController(ILogger<MenuItemController> logger,
                                     IMenuItemService menuItemService)
         {

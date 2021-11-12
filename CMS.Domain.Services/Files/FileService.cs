@@ -1,16 +1,19 @@
 ﻿using CMS.Data.Interfaces;
+using CMS.Domain.Services.Validations;
 using System;
 
 namespace CMS.Domain.Services.Files
 {
     public class FileService : IFileService
     {
-        private const string MissingEntityErrorMessage = "File does not exist.";
         private readonly IFileRepository _fileRepository;
+        private readonly IEntityStatusValidator _entityStatusValidator;
 
-        public FileService(IFileRepository fileRepository)
+        public FileService(IFileRepository fileRepository,
+            IEntityStatusValidator entityStatusValidator)
         {
             _fileRepository = fileRepository;
+            _entityStatusValidator = entityStatusValidator;
         }
 
         public File Create(File file)
@@ -20,20 +23,14 @@ namespace CMS.Domain.Services.Files
 
         public File Delete(File file)
         {
-            if (file.Status == Status.ACTIVE)
-            {
-                return _fileRepository.Delete(file);
-            }
-            throw new Exception(MissingEntityErrorMessage);
+            _entityStatusValidator.Validate(file.Status);
+            return _fileRepository.Delete(file);
         }
 
         public File Edit(File file)
         {
-            if (file.Status == Status.ACTIVE)
-            {
-                return _fileRepository.Edit(file);
-            }
-            throw new Exception(MissingEntityErrorMessage);
+            _entityStatusValidator.Validate(file.Status);
+            return _fileRepository.Edit(file);
         }
 
         public File List(File file)

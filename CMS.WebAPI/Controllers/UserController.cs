@@ -12,7 +12,6 @@ namespace CMS.WebAPI.Controllers
         
         private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
-
         public UserController(ILogger<UserController> logger,
                                 IUserService userService)
         {
