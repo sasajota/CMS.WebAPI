@@ -2,6 +2,8 @@
 using CMS.Domain;
 using CMS.Domain.Services.Validations;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CMS.Domain.Services.Menus
 {
@@ -34,9 +36,9 @@ namespace CMS.Domain.Services.Menus
             return _menuRepository.Edit(menu);
         }
 
-        public Menu List(Menu menu)
+        public IEnumerable<Menu> List()
         {
-            throw new NotImplementedException();
+            return _menuRepository.List().Where(menu => menu.Status == Status.ACTIVE);
         }
 
         public Menu Read(int id)

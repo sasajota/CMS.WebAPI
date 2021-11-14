@@ -1,6 +1,8 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain.Services.Validations;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CMS.Domain.Services.ArticleCategories
 {
@@ -33,9 +35,9 @@ namespace CMS.Domain.Services.ArticleCategories
             return _articleCategoryRepository.Edit(articleCategory);
         }
 
-        public ArticleCategory List(ArticleCategory articleCategory)
+        public IEnumerable<ArticleCategory> List()
         {
-            throw new NotImplementedException();
+            return _articleCategoryRepository.List().Where(articleCategory => articleCategory.Status == Status.ACTIVE);
         }
 
         public ArticleCategory Read(int id)

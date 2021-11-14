@@ -16,8 +16,6 @@
 
         public string Password { get; set; }
 
-        public Status Status { get; set; } = Status.ACTIVE;
-
         public UserType Type { get; set; }
     }
 }

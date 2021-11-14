@@ -1,4 +1,5 @@
 ﻿using CMS.Domain;
+using System.Collections.Generic;
 
 namespace CMS.Data.Interfaces
 {
@@ -12,6 +13,6 @@ namespace CMS.Data.Interfaces
 
         User Read(int userId);
 
-        User List(User user);
+        IEnumerable<User> List();
     }
 }

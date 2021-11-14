@@ -1,6 +1,7 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain;
 using System;
+using System.Collections.Generic;
 
 namespace CMS.Data.Repositories
 {
@@ -33,9 +34,9 @@ namespace CMS.Data.Repositories
             return user;
         }
 
-        public User List(User user)
+        public IEnumerable<User> List()
         {
-            throw new NotImplementedException();
+            return _cmsContext.Users;
         }
 
         public User Read(int userId)

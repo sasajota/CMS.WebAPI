@@ -13,13 +13,12 @@ namespace CMS.Domain.Services.Tests
         private const string ValidUsername = "test_username";
         private const string InvalidPassword = "test_invalid_password";
         private readonly IUserRepository userRepository = Substitute.For<IUserRepository>();
-        private readonly IUsernameAndPasswordValidation passwordValidation = Substitute.For<IUsernameAndPasswordValidation>();
-        private readonly IUsernameAndPasswordValidation usernameValidation = Substitute.For<IUsernameAndPasswordValidation>();
+        private readonly IUsernameAndPasswordValidation userValidator = Substitute.For<IUsernameAndPasswordValidation>();
         private readonly IEntityStatusValidator entityStatusValidator = Substitute.For<IEntityStatusValidator>();
         private readonly IUserService userService;
         public UserServiceTest()
         {
-            userService = new UserService(userRepository, passwordValidation, usernameValidation, entityStatusValidator);
+            userService = new UserService(userRepository, userValidator, entityStatusValidator);
         }
 
         [Fact]
@@ -31,8 +30,8 @@ namespace CMS.Domain.Services.Tests
                 Username = ValidUsername,
                 Password = ValidPassword,
             };
-            passwordValidation.ValidatePassword(ValidPassword).Returns(true);
-            usernameValidation.ValidateUsername(ValidUsername).Returns(true);
+            userValidator.ValidatePassword(ValidPassword).Returns(true);
+            userValidator.ValidateUsername(ValidUsername).Returns(true);
             userRepository.Create(user).Returns(user);
 
             // Act
@@ -40,8 +39,8 @@ namespace CMS.Domain.Services.Tests
 
             // Assert
             Assert.Same(user, actualUser);
-            passwordValidation.Received().ValidatePassword(ValidPassword);
-            usernameValidation.Received().ValidateUsername(ValidUsername);
+            userValidator.Received().ValidatePassword(ValidPassword);
+            userValidator.Received().ValidateUsername(ValidUsername);
         }
 
         [Fact]
@@ -53,8 +52,8 @@ namespace CMS.Domain.Services.Tests
                 Username = ValidUsername,
                 Password = InvalidPassword,
             };
-            usernameValidation.ValidateUsername(ValidUsername).Returns(true);
-            passwordValidation.When(pv => pv.ValidatePassword(InvalidPassword)).Do(pv => throw new Exception());
+            userValidator.ValidateUsername(ValidUsername).Returns(true);
+            userValidator.When(pv => pv.ValidatePassword(InvalidPassword)).Do(pv => throw new Exception());
             userRepository.Create(user).Returns(user);
 
             // Act

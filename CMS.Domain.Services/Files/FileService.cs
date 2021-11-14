@@ -1,6 +1,8 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain.Services.Validations;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CMS.Domain.Services.Files
 {
@@ -33,9 +35,9 @@ namespace CMS.Domain.Services.Files
             return _fileRepository.Edit(file);
         }
 
-        public File List(File file)
+        public IEnumerable<File> List()
         {
-            throw new NotImplementedException();
+            return _fileRepository.List().Where(file => file.Status == Status.ACTIVE);
         }
 
         public File Read(int id)

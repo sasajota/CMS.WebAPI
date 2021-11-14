@@ -45,9 +45,9 @@ namespace CMS.WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult List([FromBody] User user)
+        public IActionResult List()
         {
-            return Ok(_userService.List(user));
+            return Ok(_userService.List());
         }
     }
 }

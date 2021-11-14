@@ -1,6 +1,7 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain;
 using System;
+using System.Collections.Generic;
 
 namespace CMS.Data.Repositories
 {
@@ -34,9 +35,9 @@ namespace CMS.Data.Repositories
             return menu;
         }
 
-        public Menu List(Menu menu)
+        public IEnumerable<Menu> List()
         {
-            throw new NotImplementedException();
+            return _cmsContext.Menus;
         }
 
         public Menu Read(int menuId)

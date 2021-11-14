@@ -1,5 +1,6 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain;
+using System.Collections.Generic;
 
 namespace CMS.Data.Repositories
 {
@@ -33,9 +34,9 @@ namespace CMS.Data.Repositories
             return file;
         }
 
-        public File List(File file)
+        public IEnumerable<File> List()
         {
-            throw new System.NotImplementedException();
+            return _cmsContext.Files;
         }
 
         public File Read(int fileId)

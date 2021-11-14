@@ -1,5 +1,6 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain;
+using System.Collections.Generic;
 
 namespace CMS.Data.Repositories
 {
@@ -34,9 +35,9 @@ namespace CMS.Data.Repositories
             return article;
         }
 
-        public Article List(Article article)
+        public IEnumerable<Article> List()
         {
-            throw new System.NotImplementedException();
+            return _cmsContext.Articles;
         }
 
         public Article Read(int articleId)

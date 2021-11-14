@@ -1,4 +1,6 @@
-﻿namespace CMS.Domain.Services.MenuItems
+﻿using System.Collections.Generic;
+
+namespace CMS.Domain.Services.MenuItems
 {
     public interface IMenuItemService
     {
@@ -10,7 +12,7 @@
 
         MenuItem Read(int id);
 
-        MenuItem List(MenuItem menuItem);
+        IEnumerable<MenuItem> List();
 
     }
 }

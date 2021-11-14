@@ -1,4 +1,6 @@
-﻿namespace CMS.Domain.Services.ArticleCategories
+﻿using System.Collections.Generic;
+
+namespace CMS.Domain.Services.ArticleCategories
 {
     public interface IArticleCategoryService
     {
@@ -10,6 +12,6 @@
 
         ArticleCategory Read(int id);
 
-        ArticleCategory List(ArticleCategory articleCategory);
+        IEnumerable<ArticleCategory> List();
     }
 }

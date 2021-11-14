@@ -1,6 +1,8 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain.Services.Validations;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CMS.Domain.Services.Users
 {
@@ -8,25 +10,23 @@ namespace CMS.Domain.Services.Users
     {
 
         private readonly IUserRepository _userRepository;
-        private readonly IUsernameAndPasswordValidation _passwordValidation, _usernameValidation;
+        private readonly IUsernameAndPasswordValidation _userValidator;
         private readonly IEntityStatusValidator _entityStatusValidator;
 
         public UserService(IUserRepository userRepository,
-            IUsernameAndPasswordValidation passwordValidation,
-            IUsernameAndPasswordValidation usernameValidation,
+            IUsernameAndPasswordValidation userValidator,
             IEntityStatusValidator entityStatusValidator)
         {
             _userRepository = userRepository;
-            _passwordValidation = passwordValidation;
-            _usernameValidation = usernameValidation;
+            _userValidator = userValidator;
             _entityStatusValidator = entityStatusValidator;
         }
 
         public User Create(User user)
         {
 
-            bool isPasswordValid = _passwordValidation.ValidatePassword(user.Password);
-            bool isUsernameValid = _usernameValidation.ValidateUsername(user.Username);
+            bool isPasswordValid = _userValidator.ValidatePassword(user.Password);
+            bool isUsernameValid = _userValidator.ValidateUsername(user.Username);
 
             if(isPasswordValid == true && isUsernameValid == true)
             {
@@ -38,19 +38,19 @@ namespace CMS.Domain.Services.Users
 
         public User Delete(User user)
         {
-            _entityStatusValidator.Validate(user.status);
+            _entityStatusValidator.Validate(user.Status);
             return _userRepository.Delete(user);
         }
 
         public User Edit(User user)
         {
-            _entityStatusValidator.Validate(user.status);
+            _entityStatusValidator.Validate(user.Status);
             return _userRepository.Edit(user);
         }
 
-        public User List(User user)
+        public IEnumerable<User> List()
         {
-            return _userRepository.List(user);
+            return _userRepository.List().Where(user => user.Status == Status.ACTIVE);
         }
 
         public User Read(int id)

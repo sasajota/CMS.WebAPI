@@ -1,6 +1,8 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain.Services.Validations;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CMS.Domain.Services.MenuItems
 {
@@ -33,9 +35,9 @@ namespace CMS.Domain.Services.MenuItems
             return _menuItemRepository.Edit(menuItem);
         }
 
-        public MenuItem List(MenuItem menuItem)
+        public IEnumerable<MenuItem> List()
         {
-            throw new NotImplementedException();
+            return _menuItemRepository.List().Where(menuItem => menuItem.Status == Status.ACTIVE);
         }
 
         public MenuItem Read(int id)

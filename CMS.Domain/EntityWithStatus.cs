@@ -8,6 +8,6 @@ namespace CMS.Domain
 { 
     public class EntityWithStatus
     {
-        public Status status { get; set; }
+        public Status Status { get; set; } = Status.ACTIVE;
     }
 }

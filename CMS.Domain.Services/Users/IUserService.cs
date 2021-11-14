@@ -1,4 +1,6 @@
-﻿namespace CMS.Domain.Services.Users
+﻿using System.Collections.Generic;
+
+namespace CMS.Domain.Services.Users
 {
     public interface IUserService
     {
@@ -10,7 +12,7 @@
 
         User Read(int id);
 
-        User List(User user);
+        IEnumerable<User> List();
 
     }
 }

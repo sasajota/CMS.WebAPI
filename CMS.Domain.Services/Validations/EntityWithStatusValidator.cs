@@ -20,7 +20,7 @@ namespace CMS.Domain.Services.Validations
 
         public bool Validate(EntityWithStatus entityWithStatus)
         {
-            if(entityWithStatus.status == Status.ACTIVE)
+            if(entityWithStatus.Status == Status.ACTIVE)
             {
                 return true;
             }

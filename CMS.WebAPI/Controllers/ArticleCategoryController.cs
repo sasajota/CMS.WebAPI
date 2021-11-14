@@ -46,9 +46,9 @@ namespace CMS.WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult List([FromBody] ArticleCategory articleCategory)
+        public IActionResult List()
         {
-            return Ok(_articleCategoryService.List(articleCategory));
+            return Ok(_articleCategoryService.List());
         }
     }
 }

@@ -46,9 +46,9 @@ namespace CMS.WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult List([FromBody] MenuItem menuItem)
+        public IActionResult List()
         {
-            return Ok(_menuItemService.List(menuItem));
+            return Ok(_menuItemService.List());
         }
     }
 }

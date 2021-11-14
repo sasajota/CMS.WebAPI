@@ -1,6 +1,8 @@
 ﻿using CMS.Data.Interfaces;
 using CMS.Domain.Services.Validations;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CMS.Domain.Services.Articles
 {
@@ -33,9 +35,9 @@ namespace CMS.Domain.Services.Articles
             return _articleRepository.Edit(article);
         }
 
-        public Article List(Article article)
+        public IEnumerable<Article> List()
         {
-            throw new NotImplementedException();
+            return _articleRepository.List().Where(article => article.Status == Status.ACTIVE);
         }
 
         public Article Read(int id)

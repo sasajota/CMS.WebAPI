@@ -1,4 +1,5 @@
 ﻿using CMS.Domain;
+using System.Collections.Generic;
 
 namespace CMS.Data.Interfaces
 {
@@ -12,6 +13,6 @@ namespace CMS.Data.Interfaces
 
         Menu Read(int menuId);
 
-        Menu List(Menu menu);
+        IEnumerable<Menu> List();
     }
 }

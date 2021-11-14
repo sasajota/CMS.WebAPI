@@ -46,9 +46,9 @@ namespace CMS.WebAPI.Controllers
         }        
         
         [HttpGet]
-        public IActionResult List([FromBody] File file)
+        public IActionResult List()
         {
-            return Ok(_fileService.List(file));
+            return Ok(_fileService.List());
         }
     }
 }

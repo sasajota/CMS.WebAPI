@@ -1,4 +1,6 @@
-﻿namespace CMS.Domain.Services.Files
+﻿using System.Collections.Generic;
+
+namespace CMS.Domain.Services.Files
 {
     public interface IFileService
     {
@@ -10,7 +12,6 @@
 
         File Read(int id);
 
-        File List(File file);
-
+        IEnumerable<File> List();
     }
 }

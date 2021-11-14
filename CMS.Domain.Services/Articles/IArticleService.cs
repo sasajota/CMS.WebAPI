@@ -1,4 +1,6 @@
-﻿namespace CMS.Domain.Services.Articles
+﻿using System.Collections.Generic;
+
+namespace CMS.Domain.Services.Articles
 {
     public interface IArticleService
     {
@@ -10,7 +12,7 @@
 
         Article Read(int id);
 
-        Article List(Article article);
+        IEnumerable<Article> List();
 
     }
 }

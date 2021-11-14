@@ -2,6 +2,7 @@ using CMS.Data;
 using CMS.Data.Interfaces;
 using CMS.Data.Repositories;
 using CMS.Domain.Services.Users;
+using CMS.Domain.Services.Validations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,9 @@ namespace CMS.WebAPI
 
             services.AddScoped<IUserService, UserService>();
 
+            services.AddScoped<IUsernameAndPasswordValidation, UsernameAndPasswordValidation>();
+            services.AddScoped<IEntityStatusValidator, EntityWithStatusValidator>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -51,6 +55,10 @@ namespace CMS.WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
 
             app.UseAuthorization();
 
