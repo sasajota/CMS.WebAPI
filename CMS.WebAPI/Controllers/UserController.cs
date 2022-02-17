@@ -12,7 +12,6 @@ namespace CMS.WebAPI.Controllers
         
         private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
-
         public UserController(ILogger<UserController> logger,
                                 IUserService userService)
         {
@@ -20,24 +19,35 @@ namespace CMS.WebAPI.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        public IActionResult Get(int id)
-        {
-            return _userService.Get(id);
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return _userService.Get();
-        }
-
-
         [HttpPut]
         public IActionResult Create([FromBody] User user)
         {
             return Ok(_userService.Create(user));
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(User user)
+        {
+            return Ok(_userService.Delete(user));
+        }
+
+        [HttpPatch]
+        public IActionResult Edit([FromBody] User user)
+        {
+            return Ok(_userService.Edit(user));
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult Read(int id)
+        {
+            return Ok(_userService.Read(id));
+        }
+
+        [HttpGet]
+        public IActionResult List()
+        {
+            return Ok(_userService.List());
         }
     }
 }
